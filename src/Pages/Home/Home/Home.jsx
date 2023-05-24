@@ -2,6 +2,7 @@ import Banner from "../Banner/Banner";
 import Category from "../Category/Category";
 import Featured from "../Featured/Featured";
 import Menu from "../Menu/Menu";
+import Testimonial from "../Testimonial/Testimonial";
 
 const Home = () => {
     return (
@@ -10,6 +11,8 @@ const Home = () => {
             <Category></Category>
             <Menu></Menu>
             <Featured></Featured>
+            <Testimonial></Testimonial>
+            
         </div>
     );
 };
