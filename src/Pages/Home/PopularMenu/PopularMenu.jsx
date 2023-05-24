@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import MenuItem from "../../Shared/MenuItem/MenuItem";
 
-const Menu = () => {
+const PopularMenu = () => {
 
     const [menu, setMenu] = useState([]);
 
@@ -29,9 +29,12 @@ const Menu = () => {
                     ></MenuItem> )
                 }
             </div>
+           <div className="text-center">
+           <button className='btn btn-outline border-0 border-b-4 mt-6'>View Full Menu</button>
+           </div>
 
         </section>
     );
 };
 
-export default Menu;
+export default PopularMenu;
