@@ -12,11 +12,11 @@ import MenuCategory from '../MenuCategory/MenuCategory';
 
 const Menu = () => {
     const [menu] = useMenu();
-    const desserts = menu.filter(item => item.category === 'dessert')
-    const soups = menu.filter(item => item.category === 'soup')
-    const salads = menu.filter(item => item.category === 'salad')
-    const pizzas = menu.filter(item => item.category === 'pizza')
-    const offered = menu.filter(item => item.category === 'offered')
+    const dessert = menu.filter(item => item.category === 'dessert')
+    const soup = menu.filter(item => item.category === 'soup')
+    const salad = menu.filter(item => item.category === 'salad')
+    const pizza = menu.filter(item => item.category === 'pizza')
+    const drinks = menu.filter(item => item.category === 'drinks')
     return (
         <div>
             <Helmet>
@@ -30,32 +30,32 @@ const Menu = () => {
             ></SectionTitle>
             {/* offered menu items */}
             <MenuCategory
-                items={offered}
+                items={drinks}
             ></MenuCategory>
 
             {/* desert menu items */}
             <MenuCategory
-                items={desserts}
-                title="Desserts"
+                items={dessert}
+                title="dessert"
                 img={dessertImg}
             ></MenuCategory>
 
             {/* pizza menu items */}
             <MenuCategory
-                items={pizzas}
-                title="Pizzas"
+                items={pizza}
+                title="pizza"
                 img={pizzaImg}
             ></MenuCategory>
             {/* slalad menu items */}
             <MenuCategory
-                items={salads}
-                title="Salads"
+                items={salad}
+                title="salad"
                 img={saladImg}
             ></MenuCategory>
             {/* pizza menu items */}
             <MenuCategory
-                items={soups}
-                title="Soups"
+                items={soup}
+                title="soup"
                 img={soupImg}
             ></MenuCategory>
         </div>
