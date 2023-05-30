@@ -1,22 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/others/authentication2.png"
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser } = useContext(AuthContext);
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const onSubmit = data => {
         console.log(data)
         createUser(data.email, data.password)
-        .then(result=>{
-            const loggedUser = result.user;
-            console.log(loggedUser);
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        console.log('user profile updated')
+                        reset();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                             title: 'User Signed Up Successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        navigate("/");
+                    })
+                    .catch(error => console.log(error))
+
+            })
     };
 
 
@@ -41,6 +58,11 @@ const SignUp = () => {
                                 <input {...register("name", { required: true })} className='rounded-lg border mt-2 p-2 focus:border-yellow-500 focus:outline-none' type="text" required />
                                 {errors.name && <span className="text-red-600 my-2">Name is required</span>}
 
+                            </div>
+                            <div className='flex flex-col py-2'>
+                                <label>Photo URL</label>
+                                <input {...register("photoURL", { required: true })} className='rounded-lg border mt-2 p-2 focus:border-yellow-500 focus:outline-none' type="text" required />
+                                {errors.photoURL && <span className="text-red-600 my-2">Photo URL is required</span>}
                             </div>
                             <div className='flex flex-col py-2'>
                                 <label>Email</label>

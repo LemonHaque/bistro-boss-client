@@ -13,7 +13,7 @@ const OrderTab = ({ items }) => {
             return '<span class="' + className + '">' + (index + 1) + "</span>";
         },
     };
-
+// to do : impliment pagination here
     return (
         <div >
 

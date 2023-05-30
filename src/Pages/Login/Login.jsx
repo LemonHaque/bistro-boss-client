@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/others/authentication1.png"
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 
 const Login = () => {
-    const [disabled, setDisabled] = useState(true);
+    // const [disabled, setDisabled] = useState(true);
 
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -82,9 +82,11 @@ const Login = () => {
                                 <LoadCanvasTemplate />
                                 <input onBlur={handleValidateCaptcha} type="text" className='p-2 rounded-lg border mt-2 focus:border-yellow-500 focus:outline-none' name='captcha' placeholder="Type the captcha above" />
                             </div>
+
+                            {/* todo:make button disabled for captcha */}
                             <div className="form-control">
 
-                                <input disabled={disabled} className='w-full my-4 btn btn-warning' type="submit" value="Login" />
+                                <input disabled={false} className='w-full my-4 btn btn-warning' type="submit" value="Login" />
 
 
                                 <p className='text-center'>Do not have an account? <Link className='text-blue-500' to='/signup'>Sign Up</Link></p>
