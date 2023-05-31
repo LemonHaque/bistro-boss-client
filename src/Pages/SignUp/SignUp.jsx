@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
 
@@ -16,20 +17,37 @@ const SignUp = () => {
         console.log(data)
         createUser(data.email, data.password)
             .then(result => {
+
                 const loggedUser = result.user;
                 console.log(loggedUser);
+
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('user profile updated')
-                        reset();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                             title: 'User Signed Up Successfully',
-                            showConfirmButton: false,
-                            timer: 1500
+                        const saveUser = { name: data.name, email: data.email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+      
                         })
-                        navigate("/");
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User Signed Up Successfully',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    navigate("/");
+                                }
+                            })
+
+
                     })
                     .catch(error => console.log(error))
 
@@ -84,7 +102,7 @@ const SignUp = () => {
                                 <p className='flex items-center'><input className='mr-2 bg-red-400' type="checkbox" /> Remember Me</p>
 
                             </div>
-                            <button className='w-full my-5 py-2 bg-yellow-500 shadow-lg shadow-yellow-500/50 hover:shadow-yellow-500/40 text-white font-semibold rounded-lg'>Sign Up</button>
+                            <button className='w-full btn btn-warning my-4'>Sign Up</button>
                             <div className='text-center flex flex-col gap-3 mx-8 mb-2'>
 
 
@@ -93,7 +111,7 @@ const SignUp = () => {
                             <p className='text-center'>Already have an account? <Link className='text-blue-500' to='/login'>Login</Link></p>
                             <p className='text-red-500'></p>
                             <p className='text-blue-500'></p>
-
+                            <SocialLogin></SocialLogin>
                         </form>
                     </div>
                 </div>

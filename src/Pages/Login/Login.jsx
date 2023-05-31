@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 
 
@@ -48,10 +49,10 @@ const Login = () => {
         const user_captcha_value = e.target.value;
         console.log(user_captcha_value);
         if (validateCaptcha(user_captcha_value)) {
-            setDisabled(false)
+            // setDisabled(false)
         }
         else {
-            setDisabled(true)
+            // setDisabled(true)
         }
     }
 
@@ -83,7 +84,7 @@ const Login = () => {
                                 <input onBlur={handleValidateCaptcha} type="text" className='p-2 rounded-lg border mt-2 focus:border-yellow-500 focus:outline-none' name='captcha' placeholder="Type the captcha above" />
                             </div>
 
-                            {/* todo:make button disabled for captcha */}
+                            {/* TODO:make button disabled for captcha */}
                             <div className="form-control">
 
                                 <input disabled={false} className='w-full my-4 btn btn-warning' type="submit" value="Login" />
@@ -92,6 +93,7 @@ const Login = () => {
                                 <p className='text-center'>Do not have an account? <Link className='text-blue-500' to='/signup'>Sign Up</Link></p>
                             </div>
 
+                                <SocialLogin></SocialLogin>
                         </form>
                     </div>
                 </div>
