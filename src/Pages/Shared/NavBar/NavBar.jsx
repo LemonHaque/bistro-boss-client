@@ -24,12 +24,15 @@ const NavBar = () => {
         <li><Link to='/menu'>Our Menu</Link></li>
         <li><Link to='/secret'>Secret</Link></li>
         <li><Link to='/order/pizza'>Order Food</Link></li>
-        <li><Link to='/dashboard/mycart'>
-            <button className="btn gap-2">
-                <FaShoppingCart></FaShoppingCart>
-                <div className="badge badge-warning">+{cart?.length || 0}</div>
-            </button>
-        </Link></li>
+        <li>
+            <Link to="/dashboard/mycart">
+                <button className="btn gap-2">
+                    <FaShoppingCart></FaShoppingCart>
+                    <div className="badge badge-secondary">+{cart?.length || 0}</div>
+                </button>
+            </Link>
+        </li>
+        
 
         {
             user ?
