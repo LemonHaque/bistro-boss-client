@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaBook, FaCalendarAlt, FaHome, FaShoppingCart, FaUsers, FaUtensils, FaWallet } from 'react-icons/fa';
+import { FaBars, FaBook, FaCalendarAlt, FaHome, FaShoppingCart, FaUsers, FaUtensils, FaWallet } from 'react-icons/fa';
 import useCart from "../Hooks/UseCart";
 import useAdmin from "../Hooks/useAdmin";
 
@@ -14,9 +14,9 @@ const DashBoard = () => {
     return (
         <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center justify-center">
+            <div className="drawer-content">
+                <label htmlFor="my-drawer-2" className="btn btn-warning drawer-button lg:hidden my-4"><FaBars></FaBars></label>
                 <Outlet></Outlet>
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
             </div>
             <div className="drawer-side bg-[#D1A054]" >
@@ -28,7 +28,7 @@ const DashBoard = () => {
 
                             <li><NavLink to="/dashboard/additem"><FaUtensils></FaUtensils> Add An Item</NavLink></li>
 
-                            <li><NavLink to="/dashboard/history"><FaWallet></FaWallet>Manage Items</NavLink></li>
+                            <li><NavLink to="/dashboard/manageitems"><FaWallet></FaWallet>Manage Items</NavLink></li>
                             <li><NavLink to="/dashboard/history"><FaBook></FaBook> Manage Bookings</NavLink></li>
                             <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers>All Users</NavLink></li>
                             

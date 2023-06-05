@@ -1,11 +1,10 @@
-
 import { useForm } from 'react-hook-form';
-
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
+
 
 const AddItem = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -13,7 +12,6 @@ const AddItem = () => {
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
     const onSubmit = data => {
-        
         const formData = new FormData();
         formData.append('image', data.image[0])
 
@@ -21,35 +19,35 @@ const AddItem = () => {
             method: 'POST',
             body: formData
         })
-        .then(res => res.json())
-        .then(imgResponse => {
-            if(imgResponse.success){
-                const imgURL = imgResponse.data.display_url;
-                const {name, price, category, recipe} = data;
-                const newItem = {name, price: parseFloat(price), category, recipe, image:imgURL}
-                console.log(newItem)
-                axiosSecure.post('/menu', newItem)
-                .then(data => {
-                    console.log('after posting new menu item', data.data)
-                    if(data.data.insertedId){
-                        reset();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Item added successfully',
-                            showConfirmButton: false,
-                            timer: 1500
-                          })
-                    }
-                })
-            }
-        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    const { name, price, category, recipe } = data;
+                    const newItem = { name, price: parseFloat(price), category, recipe, image: imgURL }
+                    console.log(newItem)
+                    axiosSecure.post('/menu', newItem)
+                        .then(data => {
+                            console.log('after posting new menu item', data.data)
+                            if (data.data.insertedId) {
+                                reset();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Item added successfully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        })
+                }
+            })
 
     };
-    
-    
+
+
     return (
-        <div className="w-full px-10">
+        <div className="w-full px-20 bg-slate-100">
             <SectionTitle subHeading="What's new" heading="Add an item" ></SectionTitle>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control w-full mb-4">
@@ -71,7 +69,7 @@ const AddItem = () => {
                             <option>Soup</option>
                             <option>Salad</option>
                             <option>Dessert</option>
-                            <option>Desi</option>
+                            <option>Deshi</option>
                             <option>Drinks</option>
                         </select>
                     </div>
@@ -84,9 +82,9 @@ const AddItem = () => {
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Recipe Details</span>
+                        <span className="label-text" >Recipe Details</span>
                     </label>
-                    <textarea {...register("recipe", { required: true })} className="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
+                    <textarea {...register("recipe", { required: true })} className="textarea textarea-bordered h-24" placeholder="Details of Recipe"></textarea>
                 </div>
                 <div className="form-control w-full my-4">
                     <label className="label">
