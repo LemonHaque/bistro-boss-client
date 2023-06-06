@@ -112,7 +112,7 @@ const CheckOutForm = ({ price, cart }) => {
                         },
                     }}
                 />
-                <button className="btn my-5" type="submit" disabled={!stripe || !clientSecret || processing}>
+                <button className="btn my-5 w-1/2 mx-20" type="submit" disabled={!stripe || !clientSecret || processing}>
                     Pay
                 </button>
             </form>

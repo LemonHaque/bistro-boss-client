@@ -24,7 +24,7 @@ const DashBoard = () => {
                 <ul className="menu p-4 w-80 ">
                     {
                         isAdmin ? <>
-                            <li><NavLink to="/dashboard/home"><FaHome></FaHome>Admin Home</NavLink></li>
+                            <li><NavLink to="/dashboard/adminhome"><FaHome></FaHome>Admin Home</NavLink></li>
 
                             <li><NavLink to="/dashboard/additem"><FaUtensils></FaUtensils> Add An Item</NavLink></li>
 
@@ -37,7 +37,7 @@ const DashBoard = () => {
                             :
                             <>
 
-                                <li><NavLink to="/dashboard/home"><FaHome></FaHome>User Home</NavLink></li>
+                                <li><NavLink to="/dashboard/userhome"><FaHome></FaHome>User Home</NavLink></li>
                                 <li><NavLink to="/dashboard/reseravtions"><FaCalendarAlt></FaCalendarAlt>Reservations</NavLink></li>
                                 <li><NavLink to="/dashboard/history"><FaWallet></FaWallet>Payment History</NavLink></li>
                                 <li>
